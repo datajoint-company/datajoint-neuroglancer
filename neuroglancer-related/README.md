@@ -32,7 +32,7 @@ The JSON config file is structured with the following fields:
 This module also provides tools for implementing each of the above three steps individually. 
 
 Note: the conversion routine here assumes that each image file represent a single 2D slice of a larger 3D volume, with all slices having the same dimension. 
-This implies certain preprocessing steps to be done on the images a priori (e.g. realignment, crop, etc.)
+This implies certain preprocessing steps to be done on the images prior to the conversion (e.g. realignment, crop, etc.).
 
 
 
