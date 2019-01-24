@@ -3,9 +3,9 @@
 The primary feature provided here is a routine to convert images to **precomputed** format for use with **Neuroglancer**. 
 This routine includes three primary steps:
 
-1. Download image stack from S3 bucket, guided by an ordered filename text filename
+1. Download image stack from S3 bucket, guided by an ordered filenames text file
 2. Convert to **precomputed** format
-3. Re-upload to S3 bucket
+3. Re-upload the **precomputed** to S3 bucket
 
 This routine can be executed using python script as followed:
 ```
@@ -30,3 +30,9 @@ The JSON config file is structured with the following fields:
 +	*"overwrite"*: false  # overwrite replicated filename when uploading to S3 bucket
 
 This module also provides tools for implementing each of the above three steps individually. 
+
+Note: the conversion routine here assumes that each image file represent a single 2D slice of a larger 3D volume, with all slices having the same dimension. 
+This implies certain preprocessing steps to be done on the images a priori (e.g. realignment, crop, etc.)
+
+
+
