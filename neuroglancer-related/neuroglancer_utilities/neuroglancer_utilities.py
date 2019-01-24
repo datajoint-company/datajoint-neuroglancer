@@ -175,7 +175,7 @@ def convert_to_precomputed(folder_to_convert_from, folder_to_convert_to, voxel_r
     with open(os.path.join(folder_to_convert_to, 'info_fullres.json'), 'w') as outfile:
         json.dump(info_fullres, outfile)
 
-    # -- neuroglancer-scripts routine
+    # --- neuroglancer-scripts routine ---
     #  generate_scales_info - make info.json
     generate_scales_info.main(['', os.path.join(folder_to_convert_to, 'info_fullres.json'),
                                folder_to_convert_to])
@@ -199,10 +199,8 @@ def s3_convert_to_precomputed(s3_creds_file, s3_bucket_name_for_download, s3_buc
     download_ordered_files_from_s3(s3_creds_file, s3_bucket_name_for_download,
                                    sorted_filename, folder_to_write_to,
                                    ext, s3_prefix, s3_parts)
-
     print('============ Step 2 - convert to precomputed ==============')
     convert_to_precomputed(folder_to_convert_from, folder_to_convert_to, voxel_resolution, voxel_offset)
-
     print('============ Step 3 - upload precomputed to S3 ============')
     upload_directory_to_s3(s3_creds_file, s3_bucket_name_for_upload, folder_to_convert_to, s3_dir_to_write_to, overwrite)
 
