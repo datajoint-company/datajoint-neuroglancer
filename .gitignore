@@ -112,6 +112,7 @@ venv.bak/
 
 # credential file
 dj_local_conf.json
+dj_local_conf_TNlocal.json
 root/.one_params
 s3-creds.json
 

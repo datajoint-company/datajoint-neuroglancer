@@ -109,8 +109,11 @@ def download_ordered_files_from_s3(s3_creds_file, bucket_name,
     bucket = get_bucket(s3_creds_file, bucket_name)
     folder_to_write_to = pathlib.Path(folder_to_write_to)
     # ---------------- download images on S3 ----------------
-    with open(sorted_filename) as f:
-        f_infos = [(re.search('(?<=\s{1})(\d+)', l).group(), re.search('(.+)(?=\s\d)', l).group()) for l in f]
+    if isinstance(sorted_filename, list):
+        f_infos = [(re.search('(?<=\s{1})(\d+)', l).group(), re.search('(.+)(?=\s\d)', l).group()) for l in sorted_filename]
+    elif isinstance(sorted_filename, str) and os.path.exists(sorted_filename):
+        with open(sorted_filename) as f:
+            f_infos = [(re.search('(?<=\s{1})(\d+)', l).group(), re.search('(.+)(?=\s\d)', l).group()) for l in f]
 
     # -- search S3 for all the keys matching sorted_filenames
     placeholder_idx = []
